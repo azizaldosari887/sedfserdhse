@@ -1,231 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PRO Loading Smooth</title>
+<meta charset="UTF-8">
+<title>Hacked By Blant</title>
+
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%; width: 100%;
-    overflow: hidden;
-    background: #0a022c;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  #loading-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: #0a022c;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #7f3fbf;
-    font-size: 2.5em;
-    user-select: none;
-  }
-  #main-content {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; width: 100vw;
-    padding: 20px;
-    background: url('https://i.pinimg.com/originals/51/ae/a3/51aea3393b8234a1e69d8713a0a58bc3.gif') no-repeat center center fixed;
-    background-size: cover;
-    background-color: rgba(20, 12, 35, 0.9);
-    background-blend-mode: multiply;
-    color: #b496d8;
-    text-align: center;
-    position: relative;
-  }
-  .image-container video {
-    width: 700px;
-    max-width: 100%;
-    border: 3px solid #6f42c1;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(111, 66, 193, 0.85);
-    margin-bottom: 25px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1s ease, transform 3s ease;
-    will-change: transform, opacity;
-  }
-  .image-container video:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 45px rgba(111, 66, 193, 1);
-  }
-  .info {
-    margin-top: 15px;
-    font-size: 1.5em;
-    color: #c3b0f7;
-    text-shadow:
-      0 0 10px rgba(111, 66, 193, 0.9),
-      0 0 20px rgba(111, 66, 193, 0.7);
-    letter-spacing: 3px;
-    white-space: pre-wrap;
-    background: rgba(50, 20, 70, 0.85);
-    padding: 20px 35px;
-    border-radius: 15px;
-    max-width: 700px;
-    width: 100%;
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 1s ease, transform 3s ease;
-    will-change: transform, opacity;
-    position: relative;
-  }
-  #hacked-text {
-    margin-top: 40px;
-    font-size: 2.8em;
-    font-weight: 900;
-    color: #a16ade;
-    text-shadow:
-      0 0 8px #a16ade,
-      0 0 15px #7f3fbf,
-      0 0 25px #7f3fbf,
-      0 0 40px #6f42c1;
-    letter-spacing: 5px;
-    opacity: 0;
-    transition: opacity 1s ease, transform 3s ease;
-    will-change: transform, opacity;
-  }
-  audio {
-    margin-top: 25px;
-    outline: none;
-    filter: drop-shadow(0 0 10px #6f42c1);
-    border-radius: 15px;
-    opacity: 0;
-    transition: opacity 1s ease, transform 3s ease;
-    max-width: 700px;
-    width: 100%;
-    will-change: transform, opacity;
-  }
-  .watermark-rights {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    width: 120px;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 10000;
-    transition: opacity 1s ease, transform 1.5s ease;
-    will-change: transform, opacity;
-    filter: drop-shadow(0 0 8px rgba(111, 66, 193, 0.6));
-  }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+  font-family:Tahoma, Arial;
+  overflow:hidden;
+}
+
+/* المحتوى */
+.container{
+  text-align:center;
+  opacity:0;
+  transform:scale(.95);
+  transition:1.2s ease;
+}
+.container.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* العنوان */
+.top-text{
+  font-size:32px;
+  color:#ff0000;
+  font-weight:900;
+  margin-bottom:20px;
+  text-shadow:0 0 15px red;
+}
+
+/* الكارد */
+.card{
+  width:420px;
+  height:260px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 40px rgba(255,0,0,.6);
+  margin-bottom:25px;
+  background:#ff001a;
+}
+
+/* الصورة داخل الكارد */
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* معلومات IP */
+.info{
+  background:#ffe5e5;
+  color:#c00000;
+  padding:20px 30px;
+  border-radius:15px;
+  box-shadow:0 0 25px rgba(255,0,0,.3);
+  font-size:18px;
+  line-height:1.7;
+}
 </style>
 </head>
+
 <body>
 
-<div id="loading-screen">Loading<span id="dots">.</span></div>
+<div class="container show" id="main">
+  <div class="top-text">Hacked By Blant</div>
 
-<div id="main-content">
-  <div class="image-container">
-    <video autoplay loop muted playsinline>
-      <source src="https://cdn.discordapp.com/attachments/1390218399111577610/1392057065056370798/38e6e59c754a85b5e183d8f9fa222554.mp4?ex=686ece6b&is=686d7ceb&hm=917775f126f5c8112dd98089a4b81001b3f97c1a5af8ce1a4f40a4523f756b99&" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <div class="card">
+    <img src="https://cdn.discordapp.com/attachments/1435730696588103833/1456170543991750817/Desktop_Screenshot_2026.01.01_-_09.20.59.00.png?ex=69576400&is=69561280&hm=841a114469090d0e7c6006e7592dff578d2610783cf8b722f75aa8e2a1eb66dc&" alt="Card Image">
   </div>
-
-  <audio autoplay loop>
-    <source src="https://cdn.discordapp.com/attachments/1390218399111577610/1392268099067314247/38e6e59c754a85b5e183d8f9fa222554.mp3?ex=686eea35&is=686d98b5&hm=854fb2f1b6b5fc4b10304472c45ba30b07de206894ec86e832dd60290d8f81b7&" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
 
   <div class="info" id="ip-info">
-    <span><strong>IP:</strong> <span id="ip"></span></span><br />
-    <span><strong>City:</strong> <span id="city"></span></span><br />
-    <span><strong>Region:</strong> <span id="region"></span></span><br />
-    <span><strong>Country:</strong> <span id="country"></span></span><br />
-    <span><strong>Location:</strong> <span id="loc"></span></span><br />
-    <span><strong>Organization:</strong> <span id="org"></span></span><br />
-    <span><strong>Timezone:</strong> <span id="timezone"></span></span>
+    Loading IP info...
   </div>
-
-  <div id="hacked-text">Hacked By 𝗔𝗹𝗺𝟲𝗲𝗿𝗶 & 𝗔𝗹𝗱𝗼𝘀𝗮𝗿𝗶</div>
-
-  <img class="watermark-rights" id="watermark-img"
-    src="https://cdn.discordapp.com/attachments/1390218399111577610/1390434579776802877/Untitled_Project__23_-removebg-preview.png?ex=686b8a5c&is=686a38dc&hm=f8c466c60506ef955cbe1e4f60ea90f5b4de612d60dcf1704be7556c82959fc1&"
-    alt="Watermark" />
 </div>
 
+<audio id="bg-audio" autoplay loop>
+  <source src="https://cdn.discordapp.com/attachments/1435730696588103833/1456178836789137635/505___explore_______....mp4?ex=69576bb9&is=69561a39&hm=64c7d912a9fef1ac7421b942cd527301a8c4260c58c80a2163e90823d934b0bb&" type="audio/mpeg">
+</audio>
+
 <script>
-  const dotsElem = document.getElementById('dots');
-  let dotsCount = 1;
-  const maxDots = 3;
+const info = document.getElementById("ip-info");
 
-  const loadingInterval = setInterval(() => {
-    dotsCount = dotsCount % maxDots + 1;
-    dotsElem.textContent = '.'.repeat(dotsCount);
-  }, 500);
-
-  let ipData = null;
-  fetch('https://ipinfo.io/json')
-    .then(res => res.json())
-    .then(data => { ipData = data; })
-    .catch(() => { ipData = null; });
-
-  setTimeout(() => {
-    clearInterval(loadingInterval);
-    document.getElementById('loading-screen').style.display = 'none';
-
-    const mainContent = document.getElementById('main-content');
-    mainContent.style.display = 'flex';
-
-    const infoElem = document.getElementById('ip-info');
-    if (ipData) {
-      document.getElementById('ip').textContent = ipData.ip || 'N/A';
-      document.getElementById('city').textContent = ipData.city || 'N/A';
-      document.getElementById('region').textContent = ipData.region || 'N/A';
-      document.getElementById('country').textContent = ipData.country || 'N/A';
-      document.getElementById('loc').textContent = ipData.loc || 'N/A';
-      document.getElementById('org').textContent = ipData.org || 'N/A';
-      document.getElementById('timezone').textContent = ipData.timezone || 'N/A';
-    } else {
-      infoElem.textContent = 'خطأ في تحميل بيانات IP.';
-    }
-
-    const elementsToShow = [
-      document.querySelector('.image-container video'),
-      infoElem,
-      document.querySelector('audio'),
-      document.getElementById('hacked-text'),
-      document.getElementById('watermark-img')
-    ];
-
-    let delay = 0;
-    elementsToShow.forEach(el => {
-      setTimeout(() => {
-        el.style.opacity = '1';
-      }, delay);
-      delay += 600;
-    });
-
-    // حركة ناعمة للعناصر الرئيسية (فيديو، معلومات، صوت، نص)
-    const moveRange = 4;
-    function smoothMove() {
-      elementsToShow.slice(0, -1).forEach(el => {
-        const x = (Math.random() - 0.5) * 2 * moveRange;
-        const y = (Math.random() - 0.5) * 2 * moveRange;
-        el.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
-      });
-      setTimeout(smoothMove, 2800);
-    }
-    smoothMove();
-
-    // حركة watermark في الأعلى يمين فقط (يمين ويسار بس)
-    const watermark = document.getElementById('watermark-img');
-    const maxMoveX = 60; // يتحرك يمين ويسار بحد أقصى 60px
-    function moveWatermarkHorizontal() {
-      const x = Math.random() * maxMoveX;
-      watermark.style.transition = 'transform 1.5s ease';
-      watermark.style.transform = `translateX(${-x}px)`; // فقط أفقي
-      setTimeout(moveWatermarkHorizontal, 2000);
-    }
-    moveWatermarkHorizontal();
-
-  }, 4000);
+fetch("https://ipinfo.io/json")
+.then(r=>r.json())
+.then(d=>{
+  info.innerHTML=`
+  IP: ${d.ip}<br>
+  City: ${d.city}<br>
+  Region: ${d.region}<br>
+  Country: ${d.country}<br>
+  Location: ${d.loc}<br>
+  Org: ${d.org}<br>
+  Timezone: ${d.timezone}
+  `;
+})
+.catch(()=>{
+  info.innerText="Failed to load IP info";
+});
 </script>
 
 </body>
